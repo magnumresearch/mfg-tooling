@@ -551,10 +551,165 @@ angular.module('mfgtoolingApp')
             }
         }
 
+        $scope.updateLink_tmp = function(source, target, isDelete, node) {
+            var node1_id = source['originalid'];
+            var node1_type = source['type'];
+            var node2_id = target['originalid'];
+            var node2_type = target['type'];
+            console.log(node1_id + node1_type + node2_id + node2_type+node);
+
+            if (node1_type=="processes") {
+                Processes.get({id: node1_id}, function(result) {
+                    if (node2_type=="processStep") {
+                        delete result['$promise'];
+                        delete result['$resolve'];
+
+                        if (isDelete) {
+                             result.startingStep = null;
+                             Processes.update(result);
+                         } else {
+                            ProcessStep.get({id: node2_id}, function(result2) {
+                                delete result2['$promise'];
+                                delete result2['$resolve'];
+                                result.startingStep = result2;
+                                Processes.update(result);
+                            });
+                         }
+                    }
+                });
+            } else if (node1_type=="processStep") {
+                ProcessStep.get({id: node1_id}, function(result) {
+                    if (node2_type=="processStep") {
+                        delete result['$promise'];
+                        delete result['$resolve'];
+                        if (isDelete) {
+                             result.following = null;
+                             ProcessStep.update(result);
+                         } else {
+                            ProcessStep.get({id: node2_id}, function(result2) {
+                                delete result2['$promise'];
+                                delete result2['$resolve'];
+                                result.following = result2;
+                                ProcessStep.update(result);
+                            });
+                         }
+                    } else if (node2_type=="partFacet") {
+                        delete result['$promise'];
+                        delete result['$resolve'];
+                        if (isDelete) {
+                             result.partFacet = null;
+                             ProcessStep.update(result);
+                         } else {
+                            PartFacet.get({id: node2_id}, function(result2) {
+                                delete result2['$promise'];
+                                delete result2['$resolve'];
+                                result.partFacet = result2;
+                                ProcessStep.update(result);
+                            });
+                         }
+                    }
+                });
+            } else if (node1_type=="attack") {
+                Attack.get({id: node1_id}, function(result) {
+                    if (node2_type=="processStep") {
+                        result.processStep = null;
+                        delete result['$promise'];
+                        delete result['$resolve'];
+                        if (isDelete) {
+                             result.processStep = null;
+                             Attack.update(result);
+                         } else {
+                            ProcessStep.get({id: node2_id}, function(result2) {
+                                delete result2['$promise'];
+                                delete result2['$resolve'];
+                                result.processStep = result2;
+                                Attack.update(result);
+                            });
+                         }
+                    }
+                });
+            } else if (node1_type=="computerController") {
+                ComputerController.get({id: node1_id}, function(result) {
+                    if (node2_type=="processStep") {
+                        delete result['$promise'];
+                        delete result['$resolve'];
+                         if (isDelete) {
+                             result.processStep = null;
+                             ComputerController.update(result, $scope.deleteNode(node));
+                         } else {
+                            ProcessStep.get({id: node2_id}, function(result2) {
+                                delete result2['$promise'];
+                                delete result2['$resolve'];
+                                result.processStep = result2;
+                                ComputerController.update(result);
+                            });
+                         }
+                    }
+                });
+            } else if (node1_type=="partFacet") {
+                PartFacet.get({id: node1_id}, function(result) {
+                    if (node2_type=="part") {
+                        delete result['$promise'];
+                        delete result['$resolve'];
+                        if (isDelete) {
+                             result.part = null;
+                             PartFacet.update(result);
+                         } else {
+                            Part.get({id: node2_id}, function(result2) {
+                                delete result2['$promise'];
+                                delete result2['$resolve'];
+                                result.part = result2;
+                                PartFacet.update(result);
+                            });
+                         }
+                    }
+                });
+            } else if (node1_type=="qualityControlStep") {
+                QualityControlStep.get({id: node1_id}, function(result) {
+                    if (node2_type=="processStep") {
+                        delete result['$promise'];
+                        delete result['$resolve'];
+                        if (isDelete) {
+                             result.processStep = null;
+                             QualityControlStep.update(result);
+                         } else {
+                            ProcessStep.get({id: node2_id}, function(result2) {
+                                delete result2['$promise'];
+                                delete result2['$resolve'];
+                                result.processStep = result2;
+                                QualityControlStep.update(result);
+                            });
+                         }
+                    }
+                });
+            } else if (node1_type=="vulnerability") {
+                Vulnerability.get({id: node1_id}, function(result) {
+                    if (node2_type=="computerController") {
+                        delete result['$promise'];
+                        delete result['$resolve'];
+                        if (isDelete) {
+                             result.computerController = null;
+                             Vulnerability.update(result);
+                         } else {
+                            ComputerController.get({id: node2_id}, function(result2) {
+                                delete result2['$promise'];
+                                delete result2['$resolve'];
+                                result.computerController = result2;
+                                Vulnerability.update(result);
+                            });
+                         }
+                    }
+                });
+            }
+        }
+
         $scope.deleteNode = function(node) {
             var node_type = node['type'];
             var node_id = node['originalid'];
             console.log(node_type+"|"+node_id);
+            console.log("-----------2");
+            selected_node = null;
+
             if (node_type=="processes") {
                 Processes.delete({id:node_id});
             } else if (node_type=="processStep") {

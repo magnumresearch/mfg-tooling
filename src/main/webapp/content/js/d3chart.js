@@ -36,7 +36,7 @@ var force = d3.layout.force()
     .links(links)
     .size([width, height])
     .linkDistance(90)
-    .charge(-300)
+    .charge(-500)
     .on('tick', tick)
 
 // define arrow markers for graph links
@@ -182,7 +182,7 @@ function restart() {
   circle = circle.data(nodes, function(d) { return d.id; });
 
   // update existing nodes (reflexive & selected visual states)
-  circle.selectAll('rect')
+  circle.selectAll('circle')
     // .style('fill', function(d) { return (d === selected_node) ? colors.range()[3] : colors.range()[d.color]; })
     .style('stroke', function(d) { return (d === selected_node) ? colors.range()[3] : colors.range()[7]; })
     .style('stroke-width', function(d) {return (d === selected_node) ? 4: 1;})
@@ -384,10 +384,12 @@ function spliceLinksForNode(node) {
   toSplice.map(function(l) {
     var link = links[links.indexOf(l)];
     console.log(link);
-    $('#DashboardController').scope().updateLink(
+    // var cache = JSON.parse(JSON.stringify(node));
+    $('#DashboardController').scope().updateLink_tmp(
       link.source,
       link.target,
-      true
+      true,
+      node
     );
     links.splice(links.indexOf(l), 1);
 
@@ -507,15 +509,21 @@ function deleteLink() {
     updateButtonVisibility();
     restart();
   } else if(selected_node) {
-    $('#DashboardController').scope().deleteNode(
-      selected_node
-    );
-    nodes.splice(nodes.indexOf(selected_node), 1);
+    console.log("-----------1");
+    // var cache = JSON.parse(JSON.stringify(selected_node));
+    // setTimeout(function() { $('#DashboardController').scope().deleteNode(cache); }, 3);
+    // $('#DashboardController').scope().deleteNode(
+    //   selected_node
+    // );
+
     spliceLinksForNode(selected_node);
+    nodes.splice(nodes.indexOf(selected_node), 1);
+    
     selected_link = null;
     selected_node = null;
     updateButtonVisibility();
     restart();
+    
   }
 }
 
