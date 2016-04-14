@@ -1,0 +1,33 @@
+
+<div>
+    <h2><span>ProcessStep</span> {{vm.processStep.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span>Type</dt></dt>
+        <dd>
+            <span translate="{{'mfgtoolingApp.ProcessType.' + vm.processStep.type}}">{{vm.processStep.type}}</span>
+        </dd>
+        <hr>
+        <dt><span>Name</dt></dt>
+        <dd>
+            <span>{{vm.processStep.name}}<span>
+        </dd>
+        <hr>
+        <dt><span>following</span></dt>
+        <dd>
+            <a ui-sref="process-step-detail({id:vm.processStep.following.id})">{{vm.processStep.following.id}}</a>
+        </dd>
+        <hr>
+        <dt><span>partFacet</span></dt>
+        <dd>
+            <a ui-sref="part-facet-detail({id:vm.processStep.partFacet.id})">{{vm.processStep.partFacet.id}}</a>
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

@@ -1,0 +1,33 @@
+
+<div>
+    <h2><span>ComputerController</span> {{vm.computerController.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span>OperatingSystem</dt></dt>
+        <dd>
+            <span>{{vm.computerController.operatingSystem}}<span>
+        </dd>
+        <hr>
+        <dt><span>OperatingSoftware</dt></dt>
+        <dd>
+            <span>{{vm.computerController.operatingSoftware}}<span>
+        </dd>
+        <hr>
+        <dt><span>Network</dt></dt>
+        <dd>
+            <span translate="{{'mfgtoolingApp.Connectivity.' + vm.computerController.network}}">{{vm.computerController.network}}</span>
+        </dd>
+        <hr>
+        <dt><span>processStep</span></dt>
+        <dd>
+            <a ui-sref="process-step-detail({id:vm.computerController.processStep.id})">{{vm.computerController.processStep.id}}</a>
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

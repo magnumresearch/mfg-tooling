@@ -1,0 +1,52 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myComputerControllerLabel">Create or edit a ComputerController</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.computerController.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_operatingSystem">OperatingSystem</label>
+            <input type="text" class="form-control" name="operatingSystem" id="field_operatingSystem"
+                    ng-model="vm.computerController.operatingSystem"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_operatingSoftware">OperatingSoftware</label>
+            <input type="text" class="form-control" name="operatingSoftware" id="field_operatingSoftware"
+                    ng-model="vm.computerController.operatingSoftware"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_network">Network</label>
+            <select class="form-control" name="network" ng-model="vm.computerController.network" id="field_network">
+                <option value="LOCAL">LOCAL</option>
+                <option value="LAN">LAN</option>
+                <option value="NETWORK">NETWORK</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="field_processStep">processStep</label>
+            <select class="form-control" id="field_processStep" name="processStep" ng-model="vm.computerController.processStep" ng-options="processStep as processStep.id for processStep in vm.processsteps track by processStep.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

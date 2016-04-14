@@ -1,0 +1,75 @@
+#top-delete-button {
+  visibility: hidden;
+  margin-left: 20px;
+}
+#top-edit-button {
+  visibility: hidden;
+  margin-left: 20px;
+}
+
+svg {
+  background-color: #FFF;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+svg.rect {
+  z-index: 1;
+}
+
+svg:not(.active):not(.ctrl) {
+  cursor: crosshair;
+}
+
+path.link {
+  fill: none;
+  stroke: #afafaf;
+  stroke-width: 3px;
+  cursor: default;
+  opacity: 0.9;
+  z-index: 10;
+  stroke-dasharray: 10,2;
+}
+
+svg:not(.active):not(.ctrl) path.link {
+  cursor: pointer;
+}
+
+path.link.selected {
+  /*stroke-dasharray: 10,2;*/
+  stroke: red;
+  stroke-width: 4px;
+}
+
+path.link.dragline {
+  pointer-events: none;
+}
+
+path.link.hidden {
+  stroke-width: 0;
+}
+
+circle.node {
+  stroke-width: 1.5px;
+  cursor: pointer;
+}
+
+circle.node.reflexive {
+  stroke: #000 !important;
+  stroke-width: 2.5px;
+}
+
+text {
+  font-size: 72%;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  pointer-events: none;
+}
+
+text.id {
+  text-anchor: middle;
+  font-weight: normal;
+}

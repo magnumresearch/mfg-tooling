@@ -1,0 +1,95 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myQualityControlStepLabel">Create or edit a QualityControlStep</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.qualityControlStep.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="vm.qualityControlStep.name"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_type">Type</label>
+            <select class="form-control" name="type" ng-model="vm.qualityControlStep.type" id="field_type">
+                <option value="VISUAL_INSPECTION" translate="mfgtoolingApp.QualityControlType.VISUAL_INSPECTION">VISUAL_INSPECTION</option>
+                <option value="DIMENSION_MEASURE" translate="mfgtoolingApp.QualityControlType.DIMENSION_MEASURE">DIMENSION_MEASURE</option>
+                <option value="WEIGHT">WEIGHT</option>
+                <option value="XRAY">XRAY</option>
+                <option value="TENSILE_STRENGHTH" translate="mfgtoolingApp.QualityControlType.TENSILE_STRENGHTH">TENSILE_STRENGHTH</option>
+                <option value="YIELD_STRENGTH" translate="mfgtoolingApp.QualityControlType.YIELD_STRENGTH">YIELD_STRENGTH</option>
+                <option value="SIDE_CHANNEL" translate="mfgtoolingApp.QualityControlType.SIDE_CHANNEL">SIDE_CHANNEL</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_feature">Feature</label>
+            <!-- <input type="text" class="form-control" name="feature" id="field_feature"
+                    ng-model="vm.qualityControlStep.feature"
+                     /> -->
+            <textarea cols="40" rows="2" class="form-control" name="feature" id="field_feature"
+                    ng-model="vm.qualityControlStep.feature" />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_customConstraint">Constraint(s)</label>
+            <p>Separate constraints by ",". Example: height>120,height>100</p>
+            <div id="div-constraint"></div>
+            <!-- <input type="text" class="form-control" name="customConstraint" id="field_customConstraint"
+                    ng-model="vm.qualityControlStep.customConstraint"
+                     /> -->
+            <textarea cols="40" rows="2" class="form-control" name="customConstraint" id="field_customConstraint"
+                    ng-model="vm.qualityControlStep.customConstraint"/>
+        </div>
+
+        <script type="text/javascript">
+            $('#field_feature').bind('input propertychange', function() {
+                var features = $('#field_feature').val().split("\n");
+                var names = [];
+                features.forEach(function(feature) {
+                    var tmp = feature.split(",");
+                    if (tmp.length>0) {
+                        var featureName = tmp[0];
+                        names.push(featureName);
+                    }                    
+                });
+                
+                $("#div-constraint").text("");
+                for (var i in names) {
+                    if (names[i].length<=0) continue;
+                    var str = "'"+names[i]+"'";
+                    var r= $('<input id="'+ names[i] +'" type="button" value="+ '+ names[i] +'" onclick="onAddFeature('+ str +')"/>');
+                    $("#div-constraint").append(r);
+                }
+            });
+
+            function onAddFeature(feature) {
+                var oldValue = $("#field_customConstraint").val();
+                $("#field_customConstraint").val(oldValue+feature).trigger('input');
+            }
+        </script>
+
+        <div class="form-group">
+            <label for="field_processStep">processStep</label>
+            <select class="form-control" id="field_processStep" name="processStep" ng-model="vm.qualityControlStep.processStep" ng-options="processStep as processStep.id for processStep in vm.processsteps track by processStep.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

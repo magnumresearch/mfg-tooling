@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160413220801_added_entity_Part.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160413220802_added_entity_PartFacet.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160413220856_added_entity_ProcessStep.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160413220857_added_entity_Processes.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160413220858_added_entity_ComputerController.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160413220859_added_entity_QualityControlStep.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160413220800_added_entity_Vulnerability.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160413220803_added_entity_Attack.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+</databaseChangeLog>

@@ -1,0 +1,39 @@
+{
+  "relationships": [
+    {
+      "relationshipId": 1,
+      "relationshipType": "many-to-one",
+      "relationshipName": "processStep",
+      "otherEntityName": "processStep",
+      "otherEntityField": "id"
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": 1,
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 2,
+      "fieldName": "type",
+      "fieldType": "QualityControlType",
+      "fieldValues": "VISUAL_INSPECTION,DIMENSION_MEASURE,WEIGHT,XRAY,TENSILE_STRENGHTH,YIELD_STRENGTH,SIDE_CHANNEL"
+    },
+    {
+      "fieldId": 3,
+      "fieldName": "feature",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 4,
+      "fieldName": "customConstraint",
+      "fieldType": "String"
+    }
+  ],
+  "changelogDate": "20160413220859",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "entityTableName": "quality_control_step"
+}

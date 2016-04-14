@@ -1,0 +1,121 @@
+entity ProcessStep{
+  type ProcessType,
+  name String 
+}
+
+enum ProcessType {
+    CUTTING, FORMING, JOINING, FINISHING
+}
+
+entity Processes{
+  name String
+}
+
+entity ComputerController{
+  operatingSystem String,
+  operatingSoftware String,
+  network Connectivity
+}
+
+entity QualityControlStep{
+  name String,
+  type QualityControlType,
+  feature String,
+  customConstraint String
+}
+
+enum QualityControlType {
+    VISUAL_INSPECTION, DIMENSION_MEASURE, WEIGHT, XRAY, TENSILE_STRENGHTH, YIELD_STRENGTH, SIDE_CHANNEL
+}
+
+// Whether the computer connect to the Internet, 
+// LAN or not connected
+enum Connectivity {
+    LOCAL, LAN, NETWORK
+}
+
+entity Vulnerability{
+  name String,
+  targetOS String,
+  targetSoftware String,
+  network Connectivity
+}
+
+entity Part{
+  name String 
+}
+
+entity PartFacet{
+  name Facets 
+}
+
+enum Facets {
+    LENGTH, WEIGHT, COLOR,
+    YIELD_STRENGTH, TENSILE_STRENGTH, 
+    SURFACE_ROUGHNESS
+}
+
+entity Attack{
+  type AttackType  
+}
+
+enum AttackType {
+    SCALING, INDENTS, VERTEX_MOVEMENT, INTERNAL_VOID,
+    MATERIAL_STRENGTH, SURFACE_ROUGHNESS, 
+   CONFIDENTIAL, AVAILABILITY
+}
+
+// 3. Process Steps with an associated process type, preceding step/following step 
+//relationship OneToOne {
+//  ProcessStep{preceding} to ProcessStep
+//}
+
+relationship OneToOne {
+  ProcessStep{following} to ProcessStep
+}
+
+// 4. Quality control steps associated with process steps 
+relationship ManyToOne {
+  QualityControlStep{processStep} to ProcessStep
+}
+
+// 5. Processes that contain groups of steps and have a specific starting step 
+relationship ManyToOne {
+	Processes{startingStep} to ProcessStep
+}
+
+// 7. Computer controller instances that are associated with process steps or quality control steps 
+relationship ManyToOne {
+  ComputerController{processStep} to ProcessStep
+}
+
+// 8. Vulnerabilities that can be assigned to computer controller types
+relationship ManyToOne {
+  Vulnerability{computerController} to ComputerController
+}
+
+// 9. Part attacks that can be associated with process steps 
+relationship ManyToOne {
+  Attack{processStep} to ProcessStep
+}
+
+// 10. Part facets that have one or more process steps that impact them
+relationship ManyToOne {
+  ProcessStep{partFacet} to PartFacet
+}
+
+// 11. Parts that have many part facets 
+relationship ManyToOne {
+  PartFacet{part} to Part
+}
+
+
+
+
+
+
+
+
+
+
+

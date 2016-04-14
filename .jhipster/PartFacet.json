@@ -1,0 +1,24 @@
+{
+  "relationships": [
+    {
+      "relationshipId": 1,
+      "relationshipType": "many-to-one",
+      "relationshipName": "part",
+      "otherEntityName": "part",
+      "otherEntityField": "id"
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": 1,
+      "fieldName": "name",
+      "fieldType": "Facets",
+      "fieldValues": "LENGTH,WEIGHT,COLOR,YIELD_STRENGTH,TENSILE_STRENGTH,SURFACE_ROUGHNESS"
+    }
+  ],
+  "changelogDate": "20160413220802",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "entityTableName": "part_facet"
+}

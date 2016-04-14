@@ -1,0 +1,23 @@
+
+<div>
+    <h2><span>Processes</span> {{vm.processes.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span>Name</dt></dt>
+        <dd>
+            <span>{{vm.processes.name}}<span>
+        </dd>
+        <hr>
+        <dt><span>startingStep</span></dt>
+        <dd>
+            <a ui-sref="process-step-detail({id:vm.processes.startingStep.id})">{{vm.processes.startingStep.id}}</a>
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

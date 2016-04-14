@@ -1,0 +1,23 @@
+{
+  "relationships": [
+    {
+      "relationshipId": 1,
+      "relationshipType": "many-to-one",
+      "relationshipName": "startingStep",
+      "otherEntityName": "processStep",
+      "otherEntityField": "id"
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": 1,
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "changelogDate": "20160413220857",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "entityTableName": "processes"
+}

@@ -1,0 +1,38 @@
+
+<div>
+    <h2><span>QualityControlStep</span> {{vm.qualityControlStep.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span>Name</dt></dt>
+        <dd>
+            <span>{{vm.qualityControlStep.name}}<span>
+        </dd>
+        <hr>
+        <dt><span>Type</dt></dt>
+        <dd>
+            <span translate="{{'mfgtoolingApp.QualityControlType.' + vm.qualityControlStep.type}}">{{vm.qualityControlStep.type}}</span>
+        </dd>
+        <hr>
+        <dt><span>Feature</dt></dt>
+        <dd>
+            <span>{{vm.qualityControlStep.feature}}<span>
+        </dd>
+        <hr>
+        <dt><span>CustomConstraint</dt></dt>
+        <dd>
+            <span>{{vm.qualityControlStep.customConstraint}}<span>
+        </dd>
+        <hr>
+        <dt><span>processStep</span></dt>
+        <dd>
+            <a ui-sref="process-step-detail({id:vm.qualityControlStep.processStep.id})">{{vm.qualityControlStep.processStep.id}}</a>
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

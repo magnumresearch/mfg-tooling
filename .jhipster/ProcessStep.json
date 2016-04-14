@@ -1,0 +1,38 @@
+{
+  "relationships": [
+    {
+      "relationshipId": 1,
+      "relationshipType": "one-to-one",
+      "relationshipName": "following",
+      "otherEntityName": "processStep",
+      "otherEntityField": "id",
+      "ownerSide": true,
+      "otherEntityRelationshipName": "processStep"
+    },
+    {
+      "relationshipId": 2,
+      "relationshipType": "many-to-one",
+      "relationshipName": "partFacet",
+      "otherEntityName": "partFacet",
+      "otherEntityField": "id"
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": 1,
+      "fieldName": "type",
+      "fieldType": "ProcessType",
+      "fieldValues": "CUTTING,FORMING,JOINING,FINISHING"
+    },
+    {
+      "fieldId": 2,
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "changelogDate": "20160413220856",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "entityTableName": "process_step"
+}

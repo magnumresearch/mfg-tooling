@@ -1,0 +1,15 @@
+version: '2'
+services:
+    mfgtooling-app:
+        image: mfgtooling
+        external_links:
+            - mfgtooling-mysql:mysql
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/mfgtooling?useUnicode=true&characterEncoding=utf8&useSSL=false
+        ports:
+            - 8080:8080
+    mfgtooling-mysql:
+        extends:
+            file: mysql.yml
+            service: mfgtooling-mysql
