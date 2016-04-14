@@ -381,19 +381,27 @@ function spliceLinksForNode(node) {
   var toSplice = links.filter(function(l) {
     return (l.source === node || l.target === node);
   });
-  toSplice.map(function(l) {
-    var link = links[links.indexOf(l)];
-    console.log(link);
-    // var cache = JSON.parse(JSON.stringify(node));
-    $('#DashboardController').scope().updateLink_tmp(
-      link.source,
-      link.target,
-      true,
+  // console.log(toSplice.length);
+  var cache = JSON.parse(JSON.stringify(node));
+  if (toSplice.length>0){
+    toSplice.map(function(l) {
+      var link = links[links.indexOf(l)];
+      console.log(link);
+      // var cache = JSON.parse(JSON.stringify(node));
+      $('#DashboardController').scope().updateLink_tmp(
+        link.source,
+        link.target,
+        true,
+        cache
+      );
+      links.splice(links.indexOf(l), 1);
+
+    });
+  } else {
+    $('#DashboardController').scope().deleteNode(
       node
     );
-    links.splice(links.indexOf(l), 1);
-
-  });
+  }
 }
 
 // only respond once per keydown
@@ -509,7 +517,6 @@ function deleteLink() {
     updateButtonVisibility();
     restart();
   } else if(selected_node) {
-    console.log("-----------1");
     // var cache = JSON.parse(JSON.stringify(selected_node));
     // setTimeout(function() { $('#DashboardController').scope().deleteNode(cache); }, 3);
     // $('#DashboardController').scope().deleteNode(

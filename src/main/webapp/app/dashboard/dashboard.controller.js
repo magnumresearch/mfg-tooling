@@ -566,7 +566,7 @@ angular.module('mfgtoolingApp')
 
                         if (isDelete) {
                              result.startingStep = null;
-                             Processes.update(result);
+                             Processes.update(result, $scope.deleteNode(node));
                          } else {
                             ProcessStep.get({id: node2_id}, function(result2) {
                                 delete result2['$promise'];
@@ -584,7 +584,7 @@ angular.module('mfgtoolingApp')
                         delete result['$resolve'];
                         if (isDelete) {
                              result.following = null;
-                             ProcessStep.update(result);
+                             ProcessStep.update(result, $scope.deleteNode(node));
                          } else {
                             ProcessStep.get({id: node2_id}, function(result2) {
                                 delete result2['$promise'];
@@ -598,7 +598,7 @@ angular.module('mfgtoolingApp')
                         delete result['$resolve'];
                         if (isDelete) {
                              result.partFacet = null;
-                             ProcessStep.update(result);
+                             ProcessStep.update(result, $scope.deleteNode(node));
                          } else {
                             PartFacet.get({id: node2_id}, function(result2) {
                                 delete result2['$promise'];
@@ -617,7 +617,7 @@ angular.module('mfgtoolingApp')
                         delete result['$resolve'];
                         if (isDelete) {
                              result.processStep = null;
-                             Attack.update(result);
+                             Attack.update(result, $scope.deleteNode(node));
                          } else {
                             ProcessStep.get({id: node2_id}, function(result2) {
                                 delete result2['$promise'];
@@ -653,7 +653,7 @@ angular.module('mfgtoolingApp')
                         delete result['$resolve'];
                         if (isDelete) {
                              result.part = null;
-                             PartFacet.update(result);
+                             PartFacet.update(result, $scope.deleteNode(node));
                          } else {
                             Part.get({id: node2_id}, function(result2) {
                                 delete result2['$promise'];
@@ -671,7 +671,7 @@ angular.module('mfgtoolingApp')
                         delete result['$resolve'];
                         if (isDelete) {
                              result.processStep = null;
-                             QualityControlStep.update(result);
+                             QualityControlStep.update(result, $scope.deleteNode(node));
                          } else {
                             ProcessStep.get({id: node2_id}, function(result2) {
                                 delete result2['$promise'];
@@ -689,7 +689,7 @@ angular.module('mfgtoolingApp')
                         delete result['$resolve'];
                         if (isDelete) {
                              result.computerController = null;
-                             Vulnerability.update(result);
+                             Vulnerability.update(result, $scope.deleteNode(node));
                          } else {
                             ComputerController.get({id: node2_id}, function(result2) {
                                 delete result2['$promise'];
