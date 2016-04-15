@@ -45,7 +45,7 @@ angular.module('mfgtoolingApp')
                             "constraints": constraints,
                             "version": version,
                         };
-                        var jsonData = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(jsonObj));
+                        var jsonData = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(jsonObj, null, 4));
                         $scope.json_export = jsonData;
                     }
                 }
